@@ -9,7 +9,9 @@ const createItem = async (req, res) => {
 
 const getItem = async (req, res) => {
   const { id } = req.params;
+  console.log("ID recibido:", id);
   const item = await Item.findOne({ where: { id } });
+  console.log("Item encontrado:", item);
   return res.json({ item });
 };
 
@@ -27,6 +29,29 @@ const deleteItem = async (req, res) => {
 const updateItem = async (req, res) => {
   const { id } = req.params;
   const { title, genre, age, description, price, stock, src } = req.body;
+  const updateItem = {};
+  if (title) {
+    updateItem.title = title;
+  }
+  if (genre) {
+    updateItem.genre = genre;
+  }
+  if (age) {
+    updateItem.age = age;
+  }
+  if (description) {
+    updateItem.description = description;
+  }
+  if (price) {
+    updateItem.price = price;
+  }
+  if (stock) {
+    updateItem.stock = stock;
+  }
+  if (src) {
+    updateItem.src = src;
+  }
+
   await Item.update(
     { title, genre, age, description, price, stock, src },
     { where: { id } }

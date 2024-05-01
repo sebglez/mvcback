@@ -1,5 +1,5 @@
 const express = require("express");
-const { itemRouter } = require("./routes");
+const { itemRouter, userRouter } = require("./routes");
 const cors = require("cors");
 
 const PORT = 3001;
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/item", itemRouter);
-//app.use("/user", userRouter);
+app.use("/user", userRouter);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
